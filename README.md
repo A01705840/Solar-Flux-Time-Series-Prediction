@@ -44,6 +44,8 @@ Para ejecutar este proyecto se requieren las siguientes librerías de Python:
 * `numpy`
 * `pandas`
 * `matplotlib`
+* `seaborn`
+* `sklearn.preprocessing`
 
 
 Instalación rápida:
