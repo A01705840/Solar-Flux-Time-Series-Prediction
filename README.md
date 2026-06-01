@@ -277,5 +277,3 @@ Por lo tanto, considerando tanto la precisión predictiva como la capacidad para
 [G. Jerse, & Marcucci, A. (2024). Deep Learning LSTM-based approaches for 10.7 cm solar radio flux forecasting up to 45-days. Astronomy and Computing, 100786–100786. https://doi.org/10.1016/j.ascom.2024.100786]
 
 
-```bash
-pip install numpy pandas matplotlib 
