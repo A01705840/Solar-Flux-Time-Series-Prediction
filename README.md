@@ -13,8 +13,9 @@ Canada,. (2019). About the solar flux data. Spaceweather.Gc.Ca. https://www.spac
 ‌
 ---
 
-# Key Concepts Implemented
+# Preparación de Datos
 
+Para entender los patrones dentro de los datos se implementaron los Lags:
 ## Lag Features
 Características temporales generadas a partir de versiones desplazadas de la señal original. Estas permiten que el modelo aprenda dependencias temporales utilizando valores pasados del flujo solar.
 
@@ -25,35 +26,23 @@ Ejemplos implementados:
 - Lag anual
 - Lag asociado a la rotación solar (~27 días)
 
+Con la implementación de estos lags, permitió que se visualizara los datos más parecidos a sus datos pasados. En este caso, los lags diarios y lags de rotación solar, fueron más similares. Esto nos permite tomar una decisión en base al historial que recibirá el modelo para predecir el valor a futuro.
+
 ---
 
-## Solar Rotation Cycle
+## Los Ciclos de Rotacion Solar
 Periodicidad solar aproximada de 27 días causada por la rotación del Sol. Este patrón aparece frecuentemente en las mediciones del flujo solar debido a la reaparición de regiones activas solares.
 
 ---
-
-## Time Series Forecasting
-Técnica utilizada para predecir valores futuros del flujo solar a partir de observaciones históricas y patrones temporales.
-
-
-
-# Prerequisites
-
-Para ejecutar este proyecto se requieren las siguientes librerías de Python:
-
-* `numpy`
-* `pandas`
-* `matplotlib`
-* `seaborn`
-* `sklearn.preprocessing`
-
+# Modeling
 # Implementación de Modelos
 
 ## Modelo 1: [Predicting the Daily 10.7-cm Solar Radio Flux Using the Long Short-Term Memory Method 2022]
 
+
 ### Descripción
 
-El modelo utilizado fue una red neuronal Long Short-Term Memory (LSTM), diseñada para capturar dependencias temporales en secuencias de datos. Se utilizaron 50 neuronas y un learning rate de 0.001. En los resultados del modelo, se declaró que el forecast con mayor precisión fue de 1 dia.
+El modelo utilizado fue una red neuronal Long Short-Term Memory (LSTM), diseñada para capturar dependencias temporales en secuencias de datos. Se utilizaron 50 neuronas y un learning rate de 0.001. En los resultados del modelo, se declaró que el forecast con mayor precisión fue de 1 dia. Al implementar este modelo, se implementó con la recomendación de predicción diaria. Al iniciar, se implementaron 100 epochs, resultando en un underfitting. Por lo que se incrementó a 300 epochs, razonando que como diariamente se hacian 3 registros del dato y para este modelo se utilizaba la media diaria, la cantidad de datos a procesar incrementó por data preparation y tiempo de realización del modelo.
 
 ---
 
@@ -83,7 +72,7 @@ El modelo utilizado fue una red neuronal Long Short-Term Memory (LSTM), diseñad
 ### Descripción
 
 El siguiente modelo implementa 3 capas de 24 neuronas, el cual se compone de un input layer, un hidden layer y un output layer. Estas capas permiten al modelo detectar patrones entre los datos dependiendo el forecast, esto es debido a la hidden layer o forget layer, que solo detecta los patrones más relevantes para la siguiente predicción.
-
+En este modelo se escogío debido a su implementación de forecasting hasta 45 dias, incluyendo 27 dias (basandose en el ciclo solar). Durante su implementación, se experimentó con 1, 3 y 27 días y al igual que las conclusiones del artículo, las predicciones con historial diario resultaron más acertadas.
 
 ---
 
@@ -104,17 +93,15 @@ El siguiente modelo implementa 3 capas de 24 neuronas, el cual se compone de un 
 
 ### Variables de Entrada
 
-- La variable utilizada en ambos modelos es el fujo solar ajustado 'fluxadjflux', debido a que se utiliza como el valor estandarizado en el área.
+- La variable utilizada en ambos modelos es el fujo solar ajustado 'fluxadjflux', debido a que se utiliza como el valor estandarizado en el área. Además, a diferencia de ambos artículos científicos, se evaluó en base al flujo solar por hora y no con la media del día completo.
 
-
-
-# Métricas de Evaluación
+# Evaluación
+Al iniciar la fase de evaluación, se implementó el uso de R² y función de loss. Estas métricas fueron implementadas, en base a un ejercicio de práctica con modelos de series de tiempo, pero con modelos CNN y RNN. Pero en base a la lectura de los artículos cientificos y su justificación de métricas, se añadieron métricas adicionales para evaluar el desempeño entre ambos modelos.
 
 Para evaluar el desempeño de los modelos desarrollados se utilizaron tres métricas ampliamente empleadas en problemas de forecasting de series temporales: Mean Absolute Error (MAE), Root Mean Squared Error (RMSE) y el coeficiente de correlación (R) o coeficiente de determinación (R²).
 
-La selección de estas métricas se basa en la metodología utilizada por investigaciones recientes sobre predicción del flujo solar F10.7 mediante redes neuronales recurrentes y modelos de aprendizaje profundo.
-
 ---
+# Métricas de Evaluación
 
 ## Mean Absolute Error (MAE)
 
@@ -186,30 +173,18 @@ Estas métricas permiten evaluar simultáneamente la magnitud de los errores y l
 
 ## Desempeño del Modelo 1
 
-| Métrica | Resultado |
-|----------|------------|
-| MAE | 9.93|
-| RMSE | 17.39|
-| R² | 0.8278 |
+| Métrica | Resultado Modelo 1| Resultado Modelo 2 |
+|----------|------------|----------|
+| MAE | 9.93| 12.86 |
+| RMSE | 17.39| 21.79|
+| R² | 0.8278 | 0.73 |
 
-### Gráfica de Predicciones
+### Gráfica de Predicciones Modelo 1
 
 (<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/f025909f-22f8-4369-b357-6593f5ecf8af" />
 
 
-
-
----
-
-## Desempeño del Modelo 2
-
-| Métrica | Resultado |
-|----------|------------|
-| MAE | 12.86 |
-| RMSE | 21.79|
-| R² | 0.73 |
-
-### Gráfica de Predicciones
+### Gráfica de Predicciones Modelo 2
 
 (<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/d77a4c95-c5a7-4754-9d87-c75e49ae64ba" />
 )
@@ -244,7 +219,7 @@ Los resultados sugieren que el Modelo 1 mantiene un equilibrio adecuado entre pr
 
 ---
 
-# Selección del Modelo Final
+# Selección del Modelo
 
 ## Modelo Seleccionado
 
@@ -263,6 +238,32 @@ Por lo tanto, considerando tanto la precisión predictiva como la capacidad para
 <img width="855" height="547" alt="image" src="https://github.com/user-attachments/assets/dffb7277-1cb2-41ed-aaeb-b2e39f4f4e56" />
 
 ---
+
+# Mejora a Modelo Final
+
+Obteniendo una arquitectura para el modelo, se hicieron varios intentos de mejora. 
+
+## Intento 1
+Al visualizar la curva de aprendizaje del modelo 1 con un desempeño de R²≈ 0.85, se intentó implementar la función de activación de tanh, esta decisión se hizo en base a la justificación de uso del modelo 2, ya que tanh es una función común en modelos LSTM. 
+
+## Resultados de Intento 1
+Al entrenar el modelo, las métricas empeoraron a  R²≈ 0.80. En su mejor entrenamiento, se logró R²≈ 0.85, lo cual no incrementó su precisión. 
+<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/65b150d4-0c7e-47a5-8040-6ff420b85f40" />
+
+## Intento 2
+Después se intentó la implementación de más epochs hast 600 epochs, lo cual tampoco resultó a cambios positivos y solo creo overfitting en el modelo
+
+## Resultados de Intento 2
+Al entrenar el modelo, las métricas empeoraron a  R²≈ 0.80. En su mejor entrenamiento, se logró R²≈ 0.85, lo cual no incrementó su precisión
+<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/4cf49f44-7cf4-454c-a91f-c4e16a75af00" />
+
+
+
+## Intento 3
+Por último se implementó early stopping con 100 epochs. 
+## Resultados de Intento 3
+Este modelo, fue el más preciso y se entrenó entre las 120 y 130 epochs. 
+<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/522bea30-4fa4-4082-a719-5596c642eff9" />
 
 # Referencias
 
