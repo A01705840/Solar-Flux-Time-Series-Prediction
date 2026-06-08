@@ -298,4 +298,4 @@ Timestamp: 23:00:00
 
 [G. Jerse, & Marcucci, A. (2024). Deep Learning LSTM-based approaches for 10.7 cm solar radio flux forecasting up to 45-days. Astronomy and Computing, 100786–100786. https://doi.org/10.1016/j.ascom.2024.100786]
 
-
+Google Colab Final: https://drive.google.com/file/d/1qXCicjbVbAcF3Aq8u8VcoLCbhjs1FCfJ/view?usp=sharing (Compartido en caso de que los widgets del jupyter notebook no permitan ver el código en github)
