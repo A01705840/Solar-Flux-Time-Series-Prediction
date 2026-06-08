@@ -265,6 +265,27 @@ Por último se implementó early stopping con 100 epochs.
 Este modelo, fue el más preciso y se entrenó entre las 120 y 130 epochs. 
 <img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/522bea30-4fa4-4082-a719-5596c642eff9" />
 
+
+# Predicción Final del Modelo
+Timestamp: 17:00:00
+  Actual Fluxadjflux: 135.4000
+  Predicted Fluxadjflux: 139.7660
+  Absolute Error: 4.3660
+  Squared Error: 19.0618
+
+Timestamp: 20:00:00
+  Actual Fluxadjflux: 135.6000
+  Predicted Fluxadjflux: 135.4461
+  Absolute Error: 0.1539
+  Squared Error: 0.0237
+
+Timestamp: 23:00:00
+  Actual Fluxadjflux: 136.5000
+  Predicted Fluxadjflux: 136.0847
+  Absolute Error: 0.4153
+  Squared Error: 0.1725
+<img width="1490" height="590" alt="image" src="https://github.com/user-attachments/assets/b7b1be00-f69b-48d0-8def-45dcd91d08c5" />
+
 # Referencias
 
 ## Modelo 1
