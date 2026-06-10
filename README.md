@@ -9,7 +9,7 @@ Este proyecto se enfoca en el análisis y preprocesamiento de datos del **10.7cm
 
 El objetivo principal es preparar el dataset para tareas de **forecasting de series temporales**, utilizando técnicas de análisis temporal, extracción y detección de periodicidades solares.
 
-Canada,. (2019). About the solar flux data. Spaceweather.Gc.Ca. https://www.spaceweather.gc.ca/forecast-prevision/solar-solaire/solarflux/sx-3-en.php
+
 ‌
 ---
 
@@ -265,6 +265,11 @@ Por último se implementó early stopping con 100 epochs.
 Este modelo, fue el más preciso y se entrenó entre las 120 y 130 epochs. 
 <img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/522bea30-4fa4-4082-a719-5596c642eff9" />
 
+| Métrica | Resultado Modelo 1| Resultado Modelo 2 | Resultado Modelo FINAL |
+|----------|------------|----------| ----------|
+| MAE | 9.93| 12.86 | 6.09 |
+| RMSE | 17.39| 21.79| 11.30 |
+| R² | 0.83 | 0.73 | 0.93 |
 
 # Predicción Final del Modelo
 Timestamp: 17:00:00
@@ -286,6 +291,15 @@ Timestamp: 23:00:00
   Squared Error: 0.1725
 <img width="1490" height="590" alt="image" src="https://github.com/user-attachments/assets/b7b1be00-f69b-48d0-8def-45dcd91d08c5" />
 
+# Conclusiones Generales
+El proyecto logró desarrollar un modelo capaz de predecir el flujo solar F10.7 con un coeficiente de determinación de R² = 0.92, obteniendo un desempeño competitivo en comparación con los trabajos analizados del estado del arte. Aunque no se logró superar la precisión reportada en los artículos científicos utilizados como referencia, es importante considerar que dichos estudios realizan sus predicciones utilizando la media diaria del flujo solar, mientras que el modelo desarrollado en este proyecto trabaja con las tres mediciones diarias disponibles, lo que representa un problema de predicción más detallado y con mayor variabilidad en los datos.
+
+Asimismo, la combinación de un adecuado proceso de preparación de datos, la incorporación de características temporales relevantes y la optimización del entrenamiento mediante técnicas como Early Stopping permitió obtener un modelo robusto y con una alta capacidad de generalización. Los resultados obtenidos demuestran el potencial de las redes LSTM para modelar la actividad solar y respaldar aplicaciones relacionadas con el monitoreo del clima espacial, las comunicaciones satelitales y otros sistemas sensibles a las variaciones de la actividad solar.
+
+# A mejorar...
+Como trabajo futuro, una posible mejora del modelo consiste en incorporar la información de los horarios exactos en los que se realizan las mediciones del flujo solar. Durante el análisis se observó que, dependiendo de la época del año, las tres mediciones diarias no siempre se realizan a las mismas horas, lo que introduce variaciones temporales que actualmente no son consideradas de forma explícita por el modelo.
+
+La inclusión de esta información como variable de entrada podría permitir una representación más precisa de las condiciones bajo las cuales se registran los datos, mejorando la capacidad predictiva del modelo. Asimismo, contar con acceso anticipado a los horarios programados de medición permitiría generar predicciones más precisas para el mismo día en que se realizan las observaciones, incrementando el valor práctico del sistema para aplicaciones de monitoreo de actividad solar y clima espacial.
 # Referencias
 
 ## Modelo 1
@@ -298,4 +312,9 @@ Timestamp: 23:00:00
 
 [G. Jerse, & Marcucci, A. (2024). Deep Learning LSTM-based approaches for 10.7 cm solar radio flux forecasting up to 45-days. Astronomy and Computing, 100786–100786. https://doi.org/10.1016/j.ascom.2024.100786]
 
-Google Colab Final: https://drive.google.com/file/d/1qXCicjbVbAcF3Aq8u8VcoLCbhjs1FCfJ/view?usp=sharing (Compartido en caso de que los widgets del jupyter notebook no permitan ver el código en github)
+---
+## Dataset
+Canada,. (2019). About the solar flux data. Spaceweather.Gc.Ca. https://www.spaceweather.gc.ca/forecast-prevision/solar-solaire/solarflux/sx-3-en.php
+
+## Google Colab Final: 
+https://drive.google.com/file/d/1qXCicjbVbAcF3Aq8u8VcoLCbhjs1FCfJ/view?usp=sharing (Compartido en caso de que los widgets del jupyter notebook no permitan ver el código en github)
