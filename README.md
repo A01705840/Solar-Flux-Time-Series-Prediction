@@ -1,5 +1,4 @@
-# TC3002B
-## Avance 1: Generación o selección del set de datos y preprocesado
+# # Solar Flux Forecasting usando LSTM Networks
 
 ---
 
