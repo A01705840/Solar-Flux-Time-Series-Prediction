@@ -194,6 +194,15 @@ These metrics allow simultaneous evaluation of both prediction accuracy and the 
 | RMSE | 17.39 | 21.79 |
 | R² | 0.8278 | 0.73 |
 
+### Prediction Graph Model 1
+
+(<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/f025909f-22f8-4369-b357-6593f5ecf8af" />
+
+
+### Prediction Graph Model 2
+
+(<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/d77a4c95-c5a7-4754-9d87-c75e49ae64ba" />
+)
 ---
 
 ## Comparative Analysis
@@ -251,6 +260,7 @@ The model achieved:
 
 These results demonstrate that Model 1 not only generates more accurate predictions but also captures the temporal patterns present in the F10.7 solar flux more effectively.
 
+<img width="855" height="547" alt="image" src="https://github.com/user-attachments/assets/dffb7277-1cb2-41ed-aaeb-b2e39f4f4e56" />
 ---
 
 # Final Model Improvements
@@ -268,7 +278,7 @@ Performance deteriorated to approximately:
 - R² ≈ 0.80
 
 The best training run achieved R² ≈ 0.85, which did not improve predictive accuracy.
-
+<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/65b150d4-0c7e-47a5-8040-6ff420b85f40" />
 ---
 
 ## Attempt 2: Increasing Epochs
@@ -278,7 +288,7 @@ The number of training epochs was increased to 600.
 ### Results
 
 This change led to overfitting without improving performance.
-
+<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/4cf49f44-7cf4-454c-a91f-c4e16a75af00" />
 ---
 
 ## Attempt 3: Early Stopping
@@ -295,6 +305,8 @@ This version produced the best results, converging between 120 and 130 epochs.
 | RMSE | 17.39 | 21.79 | 11.30 |
 | R² | 0.83 | 0.73 | 0.93 |
 
+<img width="1238" height="547" alt="image" src="https://github.com/user-attachments/assets/522bea30-4fa4-4082-a719-5596c642eff9" />
+
 ---
 
 # Final Model Prediction
@@ -305,6 +317,7 @@ This version produced the best results, converging between 120 and 130 epochs.
 | 20:00 | 135.6000 | 135.4461 | 0.1539 |
 | 23:00 | 136.5000 | 136.0847 | 0.4153 |
 
+<img width="1490" height="590" alt="image" src="https://github.com/user-attachments/assets/b7b1be00-f69b-48d0-8def-45dcd91d08c5" />
 ---
 
 # General Conclusions
