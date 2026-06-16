@@ -1,4 +1,4 @@
-# # Solar Flux Forecasting usando LSTM Networks
+# Solar Flux Forecasting usando LSTM Networks
 
 ---
 
